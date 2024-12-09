@@ -1,5 +1,5 @@
-'use client';
-import React, { useState } from 'react';
+'use client'
+import React, { useState, useRef, useEffect } from 'react';
 import { Montserrat } from 'next/font/google';
 import { AiOutlineUser } from 'react-icons/ai';
 import Link from 'next/link';
@@ -17,6 +17,28 @@ const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileShopOpen, setIsMobileShopOpen] = useState(false);
+
+  // Refs for detecting clicks outside of dropdown and mobile menu
+  const dropdownRef = useRef<HTMLDivElement | null>(null); // Specify the type as HTMLDivElement
+  const mobileMenuRef = useRef<HTMLDivElement | null>(null); // Specify the type as HTMLDivElement
+
+  // Close the dropdown or mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(prev => !prev);
   const toggleMobileShop = () => setIsMobileShopOpen(prev => !prev);
@@ -63,7 +85,7 @@ const Navbar = () => {
                   </svg>
                 </button>
                 {isDropdownOpen && (
-                  <div className="absolute top-10 left-0 bg-white shadow-md rounded-lg p-4 w-48">
+                  <div ref={dropdownRef} className="absolute top-10 left-0 bg-white shadow-md rounded-lg p-4 w-48">
                     <ul className="text-sm text-gray-700">
                       <li><Link href="/shop">Dashboard</Link></li>
                       <li><Link href="/team">Team</Link></li>
@@ -107,7 +129,7 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden bg-white shadow-lg p-4">
+          <div ref={mobileMenuRef} className="lg:hidden bg-white shadow-lg p-4">
             <ul className="flex flex-col items-center gap-4">
               <li><Link href="/">Home</Link></li>
               <li>
