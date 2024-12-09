@@ -147,10 +147,10 @@ const Navbar = () => {
 
               {/* Icons in Mobile View */}
               <div className="flex flex-row gap-4 justify-between mt-6">
-                <Link href="#" className="text-blue-500"><AiOutlineUser size={20} /></Link>
+                <Link href="/login" className="text-blue-500"><AiOutlineUser size={20} /></Link>
                 <Link href="#" className="text-blue-500"><CiSearch size={20} /></Link>
-                <Link href="#" className="text-blue-500"><BsCart2 size={20} /></Link>
-                <Link href="#" className="text-blue-500"><CiHeart size={20} /></Link>
+                <Link href="/cart" className="text-blue-500"><BsCart2 size={20} /></Link>
+                <Link href="/wishlist" className="text-blue-500"><CiHeart size={20} /></Link>
               </div>
             </ul>
           </div>
