@@ -2,6 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 import { GoGraph } from "react-icons/go";
 import { RiAlarmLine } from "react-icons/ri";
+
 const FeaturedPosts = () => {
   const posts = [
     {
@@ -62,9 +63,15 @@ const FeaturedPosts = () => {
             <div className="p-6">
               <h3 className="text-lg font-bold mb-2">{post.title}</h3>
               <p className="text-gray-400 text-lg mb-4">{post.description}</p>
-              <div className="flex items-center justify-between text-gray-500 text-base">
-                <span><RiAlarmLine className='text-blue-500' />{post.date}</span>
-                <span><GoGraph className='text-green-900' />{post.comments} comments</span>
+              <div className="flex items-center justify-between text-gray-500 text-base space-x-4">
+                <div className="flex items-center">
+                  <RiAlarmLine className="text-blue-500 mr-1" />
+                  <span>{post.date}</span>
+                </div>
+                <div className="flex items-center">
+                  <GoGraph className="text-green-900 mr-1" />
+                  <span>{post.comments} comments</span>
+                </div>
               </div>
               <button className="mt-4 text-blue-500 text-sm font-semibold hover:underline">
                 Learn More
