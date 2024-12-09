@@ -1,6 +1,6 @@
 import React from 'react';
 import { Montserrat } from 'next/font/google';
-import { FaFacebook, FaLinkedin, FaInstagram, FaTwitter } from 'react-icons/fa';  // Importing the icons
+import { FaFacebook, FaLinkedin, FaInstagram, FaTwitter } from 'react-icons/fa';  
 import Link from 'next/link';
 
 const monterrat = Montserrat({

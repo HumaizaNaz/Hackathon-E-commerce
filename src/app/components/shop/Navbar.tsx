@@ -13,12 +13,12 @@ const Navbar = () => {
   
         <div className="flex-grow"></div>
         <div className="hidden items-center justify-center gap-6 md:flex">
-          <Link href="#" className="font-dm text-lg font-bold text-slate-700 flex items-center gap-2">
+          <Link href="/" className="font-dm text-lg font-bold text-slate-700 flex items-center gap-2">
             Home
             <span>&gt;</span>
           </Link>
           <Link
-            href="#"
+            href="/shop"
             className="font-dm text-lg font-bold text-slate-300 flex items-center gap-2"
           >
             Shop

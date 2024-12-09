@@ -1,5 +1,5 @@
-import ProductCard from '../../components/productpage/Card'; // Ensure correct path
-import { products } from '../../data/pageproduct'; // Ensure correct path
+import ProductCard from '../../components/productpage/Card'; 
+import { products } from '../../data/pageproduct'; 
 
 export default function Home() {
   return (

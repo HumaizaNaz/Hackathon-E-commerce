@@ -2,13 +2,13 @@ import React from "react";
 import Image from 'next/image';
 import Link from "next/link";
 
-// Import the required social media icons from react-icons
+
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 
-// Import the Montserrat font
+
 import { Montserrat } from 'next/font/google';
 
-// Load the Montserrat font with specific weights
+
 const montserrat = Montserrat({
   subsets: ['latin'],
   weight: ['400', '500', '600'],

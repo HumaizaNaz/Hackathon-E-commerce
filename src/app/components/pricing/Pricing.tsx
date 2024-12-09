@@ -38,7 +38,7 @@ const Pricing = () => {
             </ul>
           </div>
 
-          {/* Second Product - Changed to #252B42 theme */}
+          {/* Second Product */}
           <div className="bg-[#252B42] ring-2 ring-[#1E2332] rounded-3xl p-8 xl:p-10">
             <div className="flex items-baseline justify-between gap-x-4">
               <h2 id="product2" className="text-lg font-semibold text-center leading-8 text-white">STANDARD</h2>

@@ -1,5 +1,5 @@
-import ProductCard from '../shop/Card'; // Ensure correct path
-import { products } from '../../data/shop'; // Ensure correct path
+import ProductCard from '../shop/Card'; 
+import { products } from '../../data/shop'; 
 
 export default function Home() {
   return (

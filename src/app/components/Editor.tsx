@@ -3,14 +3,14 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { Montserrat } from 'next/font/google';
 
-// Importing Montserrat font
+
 const monterrat = Montserrat({
   subsets: ['latin'],
   weight: ['400', '500', '600'],
 });
 
 const Editor = () => {
-  // State to manage hovered image
+ 
   const [hoveredImage, setHoveredImage] = useState<number | null>(null);
 
   return (
@@ -18,7 +18,7 @@ const Editor = () => {
       <div className="max-w-screen-xl mx-auto">
         <div className="text-center mb-8">
           <h2 className={`${monterrat.className} text-3xl md:text-4xl text-[#252B42] font-bold`}>
-            EDITOR’S PICK
+            EDITORS PICK
           </h2>
           <p className={`${monterrat.className} text-sm md:text-base text-[#737373]`}>
             Problems trying to resolve the conflict between

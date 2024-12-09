@@ -2,7 +2,7 @@ import React from 'react';
 
 import Image from 'next/image';
 import { Montserrat } from 'next/font/google';
-// Importing Montserrat font
+
 const monterrat = Montserrat({
   subsets: ['latin'],
   weight: ['400', '500', '600'],
@@ -35,9 +35,9 @@ const Vita = () => {
           <Image
             src="/shop-hero-2-png-picture-1.png"
             alt="Product Image"
-            width={510} // Set width for better control
-            height={685} // Set height for better control
-            layout="intrinsic" // Maintain aspect ratio for responsive scaling
+            width={510} 
+            height={685} 
+            layout="intrinsic" 
             className="object-cover"
           />
         </div>

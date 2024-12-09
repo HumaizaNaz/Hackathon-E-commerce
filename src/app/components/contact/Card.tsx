@@ -40,7 +40,7 @@ const Card = () => {
             </a>
           </div>
 
-          {/* Second Product - Changed to #252B42 theme */}
+          {/* Second Product */}
           <div className="ring-1 ring-gray-300 bg-[#252B42] rounded-3xl p-8 xl:p-10 min-h-[400px]">
             <div className="flex items-center justify-center gap-x-4">
               <FaLocationDot className="text-blue-500 text-8xl font-bold" />

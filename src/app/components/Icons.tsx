@@ -10,7 +10,7 @@ const Icons = () => {
           <Image
             src="/Icons/01.png"
             alt="Icon 1"
-            width={80} // Reduced width for small screens
+            width={80} 
             height={22}
             className="text-[#737373]"
           />
@@ -19,7 +19,7 @@ const Icons = () => {
           <Image
             src="/Icons/02.png"
             alt="Icon 2"
-            width={75} // Adjusted width
+            width={75} 
             height={40}
           />
         </div>
@@ -27,7 +27,7 @@ const Icons = () => {
           <Image
             src="/Icons/03.png"
             alt="Icon 3"
-            width={80} // Adjusted width
+            width={80} 
             height={50}
           />
         </div>
@@ -35,7 +35,7 @@ const Icons = () => {
           <Image
             src="/Icons/04.png"
             alt="Icon 4"
-            width={80} // Adjusted width
+            width={80} 
             height={35}
           />
         </div>
@@ -43,7 +43,7 @@ const Icons = () => {
           <Image
             src="/Icons/05.png"
             alt="Icon 5"
-            width={80} // Adjusted width
+            width={80} 
             height={42}
           />
         </div>
@@ -51,7 +51,7 @@ const Icons = () => {
           <Image
             src="/Icons/06.png"
             alt="Icon 6"
-            width={80} // Adjusted width
+            width={80} 
             height={48}
           />
         </div>

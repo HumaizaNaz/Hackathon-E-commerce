@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { Montserrat } from 'next/font/google';
 
-// Importing Montserrat font
+
 const monterrat = Montserrat({
   subsets: ['latin'],
   weight: ['400', '500', '600'],
@@ -17,9 +17,9 @@ const Fluid = () => {
         <Image
           src="/asian-woman.png"
           alt="Product Image"
-          width={725} // Set width for better control
-          height={775} // Set height for better control
-          layout="intrinsic" // Maintain aspect ratio for responsive scaling
+          width={725} 
+          height={775} 
+          layout="intrinsic" 
           className="object-cover w-full h-auto"
         />
       </div>

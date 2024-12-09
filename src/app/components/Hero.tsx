@@ -2,10 +2,10 @@ import React from 'react';
 import Image from 'next/image';
 import { Montserrat } from "next/font/google";
 
-// Importing Montserrat font
+
 const monterrat = Montserrat({
   subsets: ['latin'],
-  weight: ['400', '500', '600'], // You can adjust the weights as needed
+  weight: ['400', '500', '600'], 
 });
 
 
@@ -16,10 +16,10 @@ const Hero = () => {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/shop-hero-1-product-slide-1.jpg"  // Ensure the image is in the public folder or use an external URL
+            src="/shop-hero-1-product-slide-1.jpg"  
             alt="hero image"
-            layout="fill"  // Makes the image cover the entire section
-            objectFit="cover"  // Ensures the image covers the entire section while maintaining aspect ratio
+            layout="fill" 
+            objectFit="cover" 
           />
         </div>
 

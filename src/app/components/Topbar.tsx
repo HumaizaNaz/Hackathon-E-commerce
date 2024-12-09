@@ -6,7 +6,7 @@ import { FaInstagram, FaYoutube, FaTwitter } from "react-icons/fa";
 import { IoLogoFacebook } from "react-icons/io5";
 import { Montserrat } from "next/font/google";
 
-// Importing Montserrat font
+
 const monterrat = Montserrat({
   subsets: ['latin'],
   weight: ['400', '500', '600'],

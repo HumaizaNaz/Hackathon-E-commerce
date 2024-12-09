@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { IoIosArrowForward } from "react-icons/io";
 import { Montserrat } from 'next/font/google';
 
-// Importing Montserrat font
+
 const monterrat = Montserrat({
   subsets: ['latin'],
   weight: ['400', '500', '600'],
@@ -12,7 +12,7 @@ const monterrat = Montserrat({
 
 const Description = () => {
   return (
-    <div className={monterrat.className}> {/* Apply the Montserrat font here */}
+    <div className={monterrat.className}> 
       <nav className="bg-white py-[50] border border-b-2 border-gray-200">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-center mx-auto p-4">
           <div className="items-center justify-center w-full md:flex md:w-auto md:order-1" id="navbar-search">
@@ -34,7 +34,7 @@ const Description = () => {
       <section>
         <div className="max-w-screen-xl mx-auto py-8 px-4 lg:py-16 lg:px-6">
           <div className="flex flex-col md:flex-row">
-            {/* Can Help Image */}
+           
             <div className="mr-0 md:mr-8 mb-6 md:mb-0">
               <Image
                 src="/unsplash.png"
@@ -44,7 +44,7 @@ const Description = () => {
                 className="w-1/2 md:w-full mx-auto"
               />
             </div>
-            {/* End Can Help Image */}
+           
 
             <div className="flex-1 flex flex-col sm:flex-row flex-wrap -mb-3 -mx-2">
               {/* First Block */}

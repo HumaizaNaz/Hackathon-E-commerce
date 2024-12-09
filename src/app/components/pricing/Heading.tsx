@@ -10,7 +10,7 @@ const monterrat = Montserrat({
 
 const Heading = () => {
   return (
-    <div className={`${monterrat.className} bg-white`}> {/* Added monterrat.className here */}
+    <div className={`${monterrat.className} bg-white`}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center lg:pt-32">
         <p className="mx-auto -mt-4 max-w-2xl mb-14 text-2xl tracking-tight text-slate-700 sm:mt-6">
           PRICING

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Montserrat } from 'next/font/google';
 
-// Import Montserrat font
+
 const monterrat = Montserrat({
   subsets: ['latin'],
   weight: ['400', '500', '600'],
@@ -9,7 +9,7 @@ const monterrat = Montserrat({
 
 const Faq = () => {
   return (
-    <div className={`${monterrat.className}`}> {/* Apply font-montserrat class */}
+    <div className={`${monterrat.className}`}> 
       <div className="py-4 max-w-screen-sm mx-auto">
         <div className="text-center mb-16">
           <p className="mt-4 text-sm leading-7 text-gray-500 font-regular">

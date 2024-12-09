@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
-
+import { GoGraph } from "react-icons/go";
+import { RiAlarmLine } from "react-icons/ri";
 const FeaturedPosts = () => {
   const posts = [
     {
@@ -9,7 +10,7 @@ const FeaturedPosts = () => {
       description: 'We focus on ergonomics and meeting you where you work. It’s only a keystroke away.',
       date: '27 April 2021',
       comments: 10,
-      image: '/post/01.png', // Replace with your actual images
+      image: '/Post/01.png', 
     },
     {
       id: 2,
@@ -17,7 +18,7 @@ const FeaturedPosts = () => {
       description: 'We focus on ergonomics and meeting you where you work. It’s only a keystroke away.',
       date: '22 April 2021',
       comments: 10,
-      image: '/post/02.png', // Replace with your actual images
+      image: '/Post/02.png', 
     },
     {
       id: 3,
@@ -25,7 +26,7 @@ const FeaturedPosts = () => {
       description: 'We focus on ergonomics and meeting you where you work. It’s only a keystroke away.',
       date: '22 April 2021',
       comments: 10,
-      image: '/post/03.jpg', // Replace with your actual images
+      image: '/Post/03.jpg',
     },
   ];
 
@@ -60,10 +61,10 @@ const FeaturedPosts = () => {
             </div>
             <div className="p-6">
               <h3 className="text-lg font-bold mb-2">{post.title}</h3>
-              <p className="text-gray-600 text-sm mb-4">{post.description}</p>
-              <div className="flex items-center justify-between text-gray-500 text-xs">
-                <span>{post.date}</span>
-                <span>{post.comments} comments</span>
+              <p className="text-gray-400 text-lg mb-4">{post.description}</p>
+              <div className="flex items-center justify-between text-gray-500 text-base">
+                <span><RiAlarmLine className='text-blue-500' />{post.date}</span>
+                <span><GoGraph className='text-green-900' />{post.comments} comments</span>
               </div>
               <button className="mt-4 text-blue-500 text-sm font-semibold hover:underline">
                 Learn More

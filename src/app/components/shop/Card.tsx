@@ -1,14 +1,14 @@
-// components/ProductCard.tsx
+
 import Image from 'next/image';
 
-// Define the type for product
+
 interface Product {
   id: number;
   name: string;
   depart: string;
   oldPrice: string;
   price: string;
-  image: string; // image should be of type string (URL of the image)
+  image: string; 
   colors: string[];
 }
 
