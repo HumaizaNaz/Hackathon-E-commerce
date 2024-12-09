@@ -8,7 +8,7 @@ const Icons = () => {
         {/* Repeat for each icon */}
         <div className='mb-4'>
           <Image
-            src="/Icons/01.png"
+            src="/icons/01.png"
             alt="Icon 1"
             width={80} 
             height={22}
@@ -17,7 +17,7 @@ const Icons = () => {
         </div>
         <div className='mb-4'>
           <Image
-            src="/Icons/02.png"
+            src="/icons/02.png"
             alt="Icon 2"
             width={75} 
             height={40}
@@ -25,7 +25,7 @@ const Icons = () => {
         </div>
         <div className='mb-4'>
           <Image
-            src="/Icons/03.png"
+            src="/icons/03.png"
             alt="Icon 3"
             width={80} 
             height={50}
@@ -33,7 +33,7 @@ const Icons = () => {
         </div>
         <div className='mb-4'>
           <Image
-            src="/Icons/04.png"
+            src="/icons/04.png"
             alt="Icon 4"
             width={80} 
             height={35}
@@ -41,7 +41,7 @@ const Icons = () => {
         </div>
         <div className='mb-4'>
           <Image
-            src="/Icons/05.png"
+            src="/icons/05.png"
             alt="Icon 5"
             width={80} 
             height={42}
@@ -49,7 +49,7 @@ const Icons = () => {
         </div>
         <div className='mb-4'>
           <Image
-            src="/Icons/06.png"
+            src="/icons/06.png"
             alt="Icon 6"
             width={80} 
             height={48}
