@@ -1,11 +1,14 @@
 import React from 'react'
 import Footer from '../components/Footer'
-import Hero from '../components/contact/Hero'
+
+import Home from '../components/contact/Home'
+import Card from '../components/contact/Card'
 
 const page = () => {
   return (
     <div>
-        <Hero/>
+      <Home/>
+      <Card/>
       <Footer/>
     </div>
   )

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Montserrat } from 'next/font/google';
-import Image from 'next/image';
 
+import Image from 'next/image';
+import { Montserrat } from 'next/font/google';
 // Importing Montserrat font
 const monterrat = Montserrat({
   subsets: ['latin'],

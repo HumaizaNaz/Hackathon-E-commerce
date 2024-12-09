@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const Icons = () => {
   return (
-    <div className='w-full h-[175px] bg-slate-200'>
+    <div className='w-full h-[175px] bg-slate-50'>
       <div className='flex justify-around items-center px-4 md:px-[20px] lg:px-[180px] h-full flex-wrap'>
         {/* Repeat for each icon */}
         <div className='mb-4'>

@@ -1,9 +1,16 @@
 import ProductCard from '../components/Card'; // Ensure correct path
 import { products } from '../data/products'; // Ensure correct path
+import { Montserrat } from 'next/font/google';
+
+// Importing Montserrat font
+const monterrat = Montserrat({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+});
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className={`${monterrat.className} min-h-screen bg-white`}>
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header Section */}
         <div className="flex flex-col items-center space-y-4 text-center">
