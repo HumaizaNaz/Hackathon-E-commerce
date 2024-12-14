@@ -1,5 +1,5 @@
 import React from 'react'
-import Footer from '../components/Footer'
+
 
 import Home from '../components/contact/Home'
 import Card from '../components/contact/Card'
@@ -9,7 +9,7 @@ const page = () => {
     <div>
       <Home/>
       <Card/>
-      <Footer/>
+     
     </div>
   )
 }

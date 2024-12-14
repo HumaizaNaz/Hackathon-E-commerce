@@ -4,7 +4,7 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 import Link from "next/link";
 import { MdWindow } from "react-icons/md";
 import { RxHamburgerMenu } from "react-icons/rx";
-import Footer from "../components/Footer";
+
 import Product from "../components/shop/Product";
 import Pagination from "../components/shop/Pagination";
 import Icons from "../components/Icons";
@@ -60,9 +60,10 @@ const page = () => {
       </div>
       <Icons />
 
-      <Footer />
+     
       <Product />
       <Pagination />
+      
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React from "react";
 import Heading from "../components/pricing/Heading";
 import Pricing from "../components/pricing/Pricing";
 import Icons from "../components/Icons";
-import Footer from "../components/Footer";
+
 import Faq from "../components/pricing/Faq";
 import Toggle from "../components/pricing/Toggle";
 import Last from "../components/pricing/Last";
@@ -20,7 +20,6 @@ const page = () => {
       <Faq />
       <Last/>
     
-      <Footer />
     </div>
   );
 };

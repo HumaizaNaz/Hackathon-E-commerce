@@ -89,7 +89,7 @@ const Navbar = () => {
                     <ul className="text-sm text-gray-700">
                       <li><Link href="/shop">Dashboard</Link></li>
                       <li><Link href="/team">Team</Link></li>
-                      <li><Link href="/pricing">Pricing</Link></li>
+                      <li><Link href="/products">Product</Link></li>
                       <li><Link href="/signup">Sign out</Link></li>
                     </ul>
                   </div>
@@ -158,8 +158,8 @@ const Navbar = () => {
                   <ul className="mt-2 bg-white shadow-md rounded-lg p-4 w-48">
                     <li><Link href="/shop">Dashboard</Link></li>
                     <li><Link href="/team">Team</Link></li>
-                    <li><Link href="/pricing">Pricing</Link></li>
-                    <li><Link href="/logout">Sign out</Link></li>
+                    <li><Link href="/products">Product</Link></li>
+                    <li><Link href="/signup">Sign out</Link></li>
                   </ul>
                 )}
               </li>

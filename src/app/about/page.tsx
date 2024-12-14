@@ -1,5 +1,5 @@
 import React from "react";
-import Footer from "../components/Footer";
+
 import CardAbout from '../components/about/Cardabout'
 import Home from "../components/about/Home";
 import BlueCard from "../components/about/BlueCard";
@@ -18,7 +18,7 @@ const page = () => {
    <CardAbout/>
       <Icons />
       <BlueCard />
-      <Footer />
+ 
     </div>
   );
 };
