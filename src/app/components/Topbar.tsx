@@ -6,7 +6,6 @@ import { FaInstagram, FaYoutube, FaTwitter } from "react-icons/fa";
 import { IoLogoFacebook } from "react-icons/io5";
 import { Montserrat } from "next/font/google";
 
-
 const monterrat = Montserrat({
   subsets: ['latin'],
   weight: ['400', '500', '600'],
@@ -14,7 +13,9 @@ const monterrat = Montserrat({
 
 const Topbar = () => {
   return (
-    <div className={`${monterrat.className} top-0 z-50 w-full`}>
+    <div
+      className={`${monterrat.className} top-0 z-50 w-full hidden sm:block`}
+    >
       <header className="bg-[#252B42] flex flex-wrap justify-between items-center text-white px-4 sm:px-6 md:px-8 lg:px-10 py-2">
         {/* Contact Section */}
         <div className="flex flex-wrap gap-4 w-full sm:w-auto items-center justify-center sm:justify-start">

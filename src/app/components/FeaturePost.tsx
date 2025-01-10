@@ -36,7 +36,7 @@ const FeaturedPosts = () => {
       {/* Header */}
       <div className="h-[134px] w-full max-w-screen-lg mx-auto text-center">
         <h2 className="text-3xl font-bold mb-2">Featured Posts</h2>
-        <p className="text-gray-600 mb-12">
+        <p className="text-gray-600 mb-16">
           Problems trying to resolve the conflict between the two major realms of Classical physics: Newtonian mechanics
         </p>
       </div>
@@ -48,7 +48,7 @@ const FeaturedPosts = () => {
             key={post.id}
             className="bg-white shadow-lg rounded-lg overflow-hidden transition-transform hover:scale-105"
           >
-            <div className="relative w-full h-[300px]">
+            <div className="relative w-full mt-12 h-[300px]">
               <Image
                 src={post.image}
                 alt={post.title}

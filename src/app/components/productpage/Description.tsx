@@ -36,13 +36,13 @@ const Description = () => {
           <div className="flex flex-col md:flex-row">
            
             <div className="mr-0 md:mr-8 mb-6 md:mb-0">
-              <Image
-                src="/unsplash.png"
-                alt="can_help_banner"
-                width={400}
-                height={400}
-                className="w-1/2 md:w-full mx-auto"
-              />
+            <Image
+  src="/unsplash.png"
+  alt="can_help_banner"
+  width={500} // Updated width
+  height={500} // Updated height
+  className="w-full md:w-auto mx-auto" // Adjusted classes for responsiveness
+/>
             </div>
            
 

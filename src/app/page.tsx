@@ -2,7 +2,7 @@
 
 import Editor from "./components/Editor";
 import Fluid from "./components/Fluid";
-import Footer from "./components/Footer";
+
 import Hero from "./components/Hero";
 import Vita from "./components/Vita";
 import Product from './components/Product'
@@ -19,7 +19,7 @@ export default function Home() {
     <Vita/>
     <Fluid/>
     <FeaturePost/>
-    <Footer/>
+    
    </div>
   );
 }

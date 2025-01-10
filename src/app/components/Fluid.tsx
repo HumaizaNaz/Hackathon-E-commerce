@@ -10,10 +10,10 @@ const monterrat = Montserrat({
 
 const Fluid = () => {
   return (
-    <div className="flex flex-col-reverse lg:flex-row justify-between items-center bg-white px-4 sm:px-[20px] lg:px-[80px] max-w-screen-xl w-full sm:min-h-[900px] lg:min-h-auto">
+    <div className="flex flex-col-reverse lg:flex-row justify-between items-center bg-white px-4 sm:px-[20px] mt-10 lg:px-[80px] max-w-screen-xl w-full sm:min-h-[900px] lg:min-h-auto">
       
       {/* Image Section */}
-      <div className="w-full sm:w-[60%] lg:w-[50%] h-auto mb-8 lg:mb-0">
+      <div className="w-full mt-3 sm:w-[60%] lg:w-[50%] h-auto mb-8 lg:mb-0">
         <Image
           src="/asian-woman.png"
           alt="Product Image"

@@ -15,7 +15,7 @@ const Home = () => {
 
   return (
     <div className={monterrat.className}>
-      <header className="sticky top-0 bg-white/80 backdrop-blur-lg z-50">
+      <header className=" top-0 bg-white/80 backdrop-blur-lg z-50">
         <nav className="mx-auto max-w-6xl px-6 py-8 flex flex-col items-center">
           {/* Heading Section */}
           <div className="text-center">

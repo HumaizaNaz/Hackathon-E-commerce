@@ -1,6 +1,5 @@
-
 import Image from 'next/image';
-
+import Link from 'next/link';
 
 interface Product {
   id: number;
@@ -9,7 +8,6 @@ interface Product {
   oldPrice: string;
   price: string;
   image: string; 
- 
 }
 
 interface ProductCardProps {
@@ -18,8 +16,9 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
-    <div className="group h-[615px] w-[241px] pl-[40px] cursor-pointer mt-10 mb-10">
-      <div className="relative aspect-w-1 aspect-h-1 w-[239px] h-[280px] overflow-hidden rounded-lg">
+    <div className="group h-auto w-full max-w-[241px] sm:max-w-[280px] md:max-w-[320px] lg:max-w-[360px] xl:max-w-[400px] mx-auto p-4 cursor-pointer">
+    
+    <Link href={`/grocery/${product.id}`}> <div className="relative aspect-w-1 aspect-h-1 w-full h-64 sm:h-72 md:h-80 lg:h-96 xl:h-[400px] overflow-hidden rounded-lg">
         <Image
           src={product.image}
           alt={product.name}
@@ -28,18 +27,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           className="group-hover:scale-105 transition-transform duration-200"
         />
       </div>
-      <div className="mt-2 h-[118px] w-[239px] px-[25px] py-[36px] space-y-2">
-        <h3 className="text-xl font-bold pl-[24px] justify-center text-black">{product.name}</h3>
-        <h5 className="text-xl justify-start font-bold text-gray-400">{product.depart}</h5>
-        <div className=' pl-[24px] flex justify-start gap-3'>
-          <p className="text-lg font-bold text-gray-500">{product.oldPrice}</p>
-          <p className="text-lg font-bold text-green-900">{product.price}</p>
-        </div>
-
-        <div className="flex pl-[24px] space-x-2">
-        
+      <div className="mt-4 h-auto w-full px-4 space-y-2 text-center">
+        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-black">{product.name}</h3>
+        <h5 className="text-sm sm:text-base md:text-lg font-semibold text-gray-400">{product.depart}</h5>
+        <div className="flex justify-center gap-3">
+          <p className="text-sm sm:text-base font-bold text-gray-500 line-through">{product.oldPrice}</p>
+          <p className="text-sm sm:text-base font-bold text-green-900">{product.price}</p>
         </div>
       </div>
+      </Link> 
     </div>
   );
 };
