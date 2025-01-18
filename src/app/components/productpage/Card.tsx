@@ -58,7 +58,7 @@ interface ProductCardProps {
   product: Product;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+const ProductCard2: React.FC<ProductCardProps> = ({ product }) => {
   // Generate the image URL using urlFor function
   const imageUrl = urlFor(product.image);
 
@@ -93,4 +93,4 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   );
 };
 
-export default ProductCard;
+export default ProductCard2;

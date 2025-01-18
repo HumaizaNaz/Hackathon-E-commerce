@@ -39,18 +39,18 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             {product.name}
           </h3>
           <h5
-            className="text-md font-medium text-gray-500 truncate text-center"
-            style={{
-              fontSize: `${product.description.length > 15 ? '0.875rem' : '1rem'}`, // Adjust size based on length
-            }}
-          >
-            {product.description}
-          </h5>
+  className="text-md font-medium text-gray-500 truncate text-center"
+  style={{
+    fontSize: `${product.description?.length > 15 ? '0.875rem' : '1rem'}`, // Use optional chaining
+  }}
+>
+  {product.description || 'No description available'}
+</h5>
           <div className="flex justify-center gap-3">
             <p className="text-sm line-through text-gray-400">{product.oldPrice}</p>
             <p className="text-sm font-bold text-green-600">{product.price}</p>
           </div>
-          {product.colors && Array.isArray(product.colors) && product.colors.length > 0 && (
+          {Array.isArray(product.colors) && product.colors.length > 0 ? (
   <div className="flex justify-center space-x-2">
     <span className="font-bold text-gray-700">Colors: </span>
     {product.colors.map((color, index) => (
@@ -62,6 +62,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       ></span>
     ))}
   </div>
+) : (
+  <div className="text-gray-500 text-sm">No colors available</div>
 )}
         </div>
       </Link>

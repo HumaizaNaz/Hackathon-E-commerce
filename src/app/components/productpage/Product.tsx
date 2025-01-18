@@ -22,7 +22,7 @@
 // }
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from 'react';
-import ProductCard from '../../components/productpage/Card';
+import ProductCard2 from '../../components/productpage/Card';
 import { client } from '@/sanity/lib/client';
 
 // Product interface for TypeScript
@@ -100,7 +100,7 @@ export default function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
           {productItems.length > 0 ? (
             productItems.map((product: Product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard2 key={product.id} product={product} />
             ))
           ) : (
             <div>Loading...</div>

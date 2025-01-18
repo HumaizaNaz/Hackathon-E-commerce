@@ -74,17 +74,14 @@ export default function Home() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const products = await getData();
-
-      // Shuffle the products randomly
-      const shuffledProducts = products.sort(() => Math.random() - 0.5);
-
-      // Limit the number of products to 20
-      const limitedProducts = shuffledProducts.slice(0, 20);
-
-      setProductItems(limitedProducts);
+      try {
+        const products = await getData();
+        const shuffledProducts = products.sort(() => Math.random() - 0.5).slice(0, 20);
+        setProductItems(shuffledProducts);
+      } catch (error) {
+        console.error('Error fetching product items:', error);
+      }
     };
-
     fetchData();
   }, []);
 
