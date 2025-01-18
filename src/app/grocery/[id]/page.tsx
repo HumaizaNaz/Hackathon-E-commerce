@@ -71,6 +71,7 @@ async function getData(): Promise<Product[]> {
 const ProductPage = () => {
   const params = useParams();
   const productId = params?.id;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [productItems, setProductItems] = useState<Product[]>([]);
   const [product, setProduct] = useState<Product | null>(null);
   const [currentImage, setCurrentImage] = useState('');
