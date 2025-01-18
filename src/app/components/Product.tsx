@@ -95,6 +95,14 @@ export default function Home() {
           <p className="text-sm sm:text-base text-gray-500">
             Discover the perfect blend of style, comfort, and elegance. Shop our best-selling outfits and accessories that elevate your wardrobe.
           </p>
+          <div className="flex justify-center mt-6">
+          <Link
+    href="/category"
+    className="text-blue-600 hover:text-blue-800 underline transition-all duration-300"
+  >
+    For More Products
+  </Link>
+</div>
         </div>
 
         {/* Product Grid */}
@@ -108,9 +116,14 @@ export default function Home() {
           )}
         </div>
 
-        <Link href="/category" className="px-6 py-2 mt-6 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-all duration-300">
-          For More Products
-        </Link>
+        <div className="flex justify-center mt-6">
+  <Link
+    href="/category"
+    className="px-6 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-all duration-300"
+  >
+    For More Products
+  </Link>
+</div>
       </main>
     </div>
   );

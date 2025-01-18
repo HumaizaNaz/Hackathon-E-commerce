@@ -3,6 +3,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { client } from '@/sanity/lib/client';
 import Image from 'next/image';
 import { FaSearch } from 'react-icons/fa';
+import Link from 'next/link';
 
 interface SanityProduct {
   _id: string;
@@ -226,7 +227,7 @@ const Filter = () => {
       {/* Buttons */}
       <div className="flex justify-between gap-3">
       <button className="w-full py-2 bg-blue-400 text-white rounded-lg shadow-lg hover:bg-blue-600 hover:shadow-2xl transition-all duration-300">
-          Buy Now
+      <Link href={`/grocery/${prod.id}`}> Buy Now </Link>
         </button>
         <button className="w-full py-2 bg-orange-400 text-white rounded-lg shadow-lg hover:bg-orange-600 hover:shadow-2xl transition-all duration-300">
           Add to Cart

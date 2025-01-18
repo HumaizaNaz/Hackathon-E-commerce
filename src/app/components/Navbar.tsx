@@ -217,6 +217,22 @@ const Navbar: React.FC = () => {
                 <Link href="/contact">Contact</Link>
               </li>
             </ul>
+            <div className="flex justify-center gap-4 mt-4">
+             
+              <Link href="/login" className="flex items-center text-blue-500">
+              <AiOutlineUser className="mr-1" />
+              Login/Signup
+            </Link>
+            <Link href="/category" className="text-blue-500">
+              <CiSearch size={20} />
+            </Link>
+            <Link href="/cart" className="text-blue-500">
+              <BsCart2 size={20} />
+            </Link>
+            <Link href="/wishlist" className="text-blue-500">
+              <CiHeart size={20} />
+            </Link>
+            </div>
           </div>
         )}
       </header>

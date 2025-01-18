@@ -49,7 +49,7 @@ const Editor = () => {
             EDITORS PICK
           </h2>
           <p className={`${monterrat.className} text-sm md:text-base text-[#737373]`}>
-            Problems trying to resolve the conflict between
+          Step into a world where style meets selection—our Editor’s Picks redefine your favorites with a touch of elegance.
           </p>
         </div>
         <div className="flex flex-wrap justify-center gap-8">
