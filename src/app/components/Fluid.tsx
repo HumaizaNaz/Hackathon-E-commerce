@@ -1,6 +1,23 @@
 import React from 'react';
 import Image from 'next/image';
 import { Montserrat } from 'next/font/google';
+import { client } from "@/sanity/lib/client";
+
+async function getData() {
+  const fetchData = await client.fetch(`
+   *[_type == "fluidSection"][0] {
+    title,
+    subtitle,
+    description,
+  
+    "image": image.asset->url
+  }
+  `);
+
+  return fetchData;
+}
+
+
 
 
 const monterrat = Montserrat({
@@ -8,14 +25,16 @@ const monterrat = Montserrat({
   weight: ['400', '500', '600'],
 });
 
-const Fluid = () => {
+export default async function Fluid() {
+    const data = await getData();
+
   return (
-    <div className="flex flex-col-reverse lg:flex-row justify-between items-center bg-white px-4 sm:px-[20px] mt-10 lg:px-[80px] max-w-screen-xl w-full sm:min-h-[900px] lg:min-h-auto">
+    <div className="flex flex-col-reverse lg:flex-row justify-between items-center bg-white px-4 sm:px-[20px] pt-20  lg:px-[80px]  w-full sm:min-h-[900px] lg:min-h-auto">
       
       {/* Image Section */}
-      <div className="w-full mt-3 sm:w-[60%] lg:w-[50%] h-auto mb-8 lg:mb-0">
+      <div className="w-full  sm:w-[60%] lg:w-[50%] h-auto mb-8 lg:mb-0">
         <Image
-          src="/asian-woman.png"
+          src={data.image}
           alt="Product Image"
           width={725} 
           height={775} 
@@ -25,28 +44,33 @@ const Fluid = () => {
       </div>
       
       {/* Text Section */}
-      <div className="w-full sm:w-[70%] lg:w-[40%] h-auto flex flex-col justify-center gap-[10px]">
-        <h5 className={`${monterrat.className} text-gray-500 text-[14px] sm:text-[16px] md:text-[18px] mb-3 sm:mb-4`}>SUMMER 2020</h5>
-        <h1 className={`${monterrat.className} text-black text-2xl sm:text-[32px] md:text-[40px] font-bold leading-[1.1] mb-3 sm:mb-4 w-full break-words`}>
-          Part of the Neural Universe
-        </h1>
-        <p className={`${monterrat.className} text-gray-500 text-[12px] sm:text-[14px] md:text-[16px] leading-[26px] mb-3 sm:mb-4`}>
-          We know how large objects will act,
-        </p>
-        <p className={`${monterrat.className} text-gray-500 text-[12px] sm:text-[14px] md:text-[16px] leading-[24px] mb-4 sm:mb-6`}>
-          but things on a small scale.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center">
-          <button className="bg-[#2DC071] text-base sm:text-sm md:text-lg font-bold text-white w-full sm:w-[150px] md:w-[200px] h-[40px] sm:h-[40px] md:h-[52px] rounded-[5px] py-[10px] sm:py-[10px] md:py-[12px] px-[25px] sm:px-[20px] md:px-[30px] mb-3 sm:mb-0">
-            Buy Now
-          </button>
-          <button className="bg-white border-neutral-500 border-2 text-base sm:text-sm md:text-lg font-bold text-[#2DC071] w-full sm:w-[150px] md:w-[200px] h-[40px] sm:h-[40px] md:h-[52px] rounded-[5px] py-[10px] sm:py-[10px] md:py-[12px] px-[25px] sm:px-[20px] md:px-[30px]">
-            Read More
-          </button>
-        </div>
-      </div>
+      <div className="w-full sm:w-[70%] lg:w-[40%] h-auto flex flex-col items-center text-center justify-center gap-[10px]">
+  <h5
+    className={`${monterrat.className} text-gray-500 text-[14px] sm:text-[16px] md:text-[18px] mb-3 sm:mb-4`}
+  >
+    {data.subtitle}
+  </h5>
+  <h1
+    className={`${monterrat.className} text-black text-3xl sm:text-[32px] md:text-[40px] font-bold leading-[1.1] mb-3 sm:mb-4 w-full break-words`}
+  >
+    {data.title}
+  </h1>
+  <p
+    className={`${monterrat.className} text-gray-500 text-[12px] sm:text-[14px] md:text-[16px] leading-[26px] mb-3 sm:mb-4 `}
+  >
+    {data.description}
+  </p>
+  <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 items-center justify-center w-full">
+  <button className="bg-[#2DC071] text-sm sm:text-base md:text-lg font-bold text-white w-[120px] h-[36px] sm:w-[150px] sm:h-[40px] md:w-[200px] md:h-[52px] rounded-[5px] flex items-center justify-center">
+    Buy Now
+  </button>
+  <button className="bg-white border-neutral-500 border text-sm sm:text-base md:text-lg font-bold text-[#2DC071] w-[120px] h-[36px] sm:w-[150px] sm:h-[40px] md:w-[200px] md:h-[52px] rounded-[5px] flex items-center justify-center">
+    Read More
+  </button>
+</div>
+</div>
     </div>
   );
 }
 
-export default Fluid;
+

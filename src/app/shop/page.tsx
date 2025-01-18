@@ -5,7 +5,7 @@ import Link from "next/link";
 import { MdWindow } from "react-icons/md";
 import { RxHamburgerMenu } from "react-icons/rx";
 
-import Product from "../components/shop/Product";
+import Product from "../components/Product";
 import Pagination from "../components/shop/Pagination";
 import Icons from "../components/Icons";
 const page = () => {
@@ -60,8 +60,8 @@ const page = () => {
       </div>
       <Icons />
 
-     
-      <Product />
+     <Product/>
+      
       <Pagination />
       
     </div>

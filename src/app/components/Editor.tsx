@@ -1,8 +1,9 @@
-'use client';
-import React, { useState } from 'react';
-import Image from 'next/image';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+'use client'
+import React, { useState, useEffect } from 'react';
 import { Montserrat } from 'next/font/google';
-
+import { client, urlFor } from '@/sanity/lib/client'; // Ensure this is properly configured
+import Image from 'next/image';
 
 const monterrat = Montserrat({
   subsets: ['latin'],
@@ -10,8 +11,35 @@ const monterrat = Montserrat({
 });
 
 const Editor = () => {
- 
   const [hoveredImage, setHoveredImage] = useState<number | null>(null);
+  const [images, setImages] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const data = await client.fetch(
+          
+`*[_type == "editorSection"]{
+  images[] {
+    "defaultImage": defaultImage.asset->url,
+    "hoveredImage": hoveredImage.asset->url
+  }
+}`
+        );
+        console.log('Fetched image data:', data); // Logging the fetched data
+        setImages(data[0]?.images || []);
+      } catch (error) {
+        console.error('Error fetching images:', error);
+      }
+    };
+
+    fetchImages();
+  }, []);
+
+  const getImageUrl = (image: any, hovered: boolean) => {
+    if (!image) return '/fallback-image.jpg'; // Provide fallback if image is undefined
+    return hovered ? urlFor(image?.hoveredImage)?.url() : urlFor(image?.defaultImage)?.url();
+  };
 
   return (
     <div className="w-full h-auto px-6 py-12 mt-20 md:px-12 md:py-16">
@@ -24,96 +52,74 @@ const Editor = () => {
             Problems trying to resolve the conflict between
           </p>
         </div>
-
-        {/* Images Section */}
         <div className="flex flex-wrap justify-center gap-8">
-          {/* Image 1 */}
-          <div
-            className="w-full md:w-[510px] h-[500px] relative group"
-            onMouseEnter={() => setHoveredImage(1)}
-            onMouseLeave={() => setHoveredImage(null)}
+        {/* Image 1 with Hover Effect */}
+        <div
+          className="w-full md:w-[510px] h-[500px] relative group"
+          onMouseEnter={() => setHoveredImage(1)}
+          onMouseLeave={() => setHoveredImage(null)}
+        >
+          <Image
+            src={getImageUrl(images[0], hoveredImage === 1)}
+            alt="Image 1"
+            width={510}
+            height={500}
+            className="w-full h-full object-cover transition-all duration-300"
+          />
+          <button
+            aria-label="Shop Image 1"
+            className={`${monterrat.className} absolute bottom-5 left-5 bg-[#ffff] text-black font-bold py-2 px-6 rounded-md shadow-md transition-all duration-300`}
           >
-            <Image
-              src={hoveredImage === 1 ? '/card-cover-20.jpg' : '/filter.png'}
-              alt="Image 1"
-              width={510}
-              height={500}
-              className="w-full h-full object-cover transition-all duration-300"
-            />
-           <button
-                  aria-label="Shop Image 3"
-                  className={`${monterrat.className} absolute bottom-5 left-5 bg-[#ffff] text-black font-bold py-2 px-6 rounded-md shadow-md transition-all duration-300`}
-                >
-                  Shop Now
-                </button>
-          </div>
-
-          {/* Image 2 */}
-          <div
-            className="w-full md:w-[240px] h-[500px] relative group"
-            onMouseEnter={() => setHoveredImage(2)}
-            onMouseLeave={() => setHoveredImage(null)}
-          >
-            <Image
-              src={hoveredImage === 2 ? '/card-cover-21.jpg' : '/filter (1).png'}
-              alt="Image 2"
-              width={240}
-              height={500}
-              className="w-full h-full object-cover transition-all duration-300"
-            />
-           <button
-                  aria-label="Shop Image 3"
-                  className={`${monterrat.className} absolute bottom-5 left-5 bg-[#ffff] text-black font-bold py-2 px-6 rounded-md shadow-md transition-all duration-300`}
-                >
-                  Shop Now
-                </button>
-          </div>
-
-          {/* Image 3 & 4 */}
-          <div className="flex flex-wrap justify-between gap-4 w-full md:w-[240px]">
-            {/* Image 3 */}
-            <div
-              className="w-full h-[242px] relative group"
-              onMouseEnter={() => setHoveredImage(3)}
-              onMouseLeave={() => setHoveredImage(null)}
-            >
-              <Image
-                src={hoveredImage === 3 ? '/card-cover-22.jpg' : '/filter (2).png'}
-                alt="Image 3"
-                width={240}
-                height={242}
-                className="w-full h-full object-cover transition-all duration-300"
-              />
-            <button
-                  aria-label="Shop Image 3"
-                  className={`${monterrat.className} absolute bottom-5 left-5 bg-[#ffff] text-black font-bold py-2 px-6 rounded-md shadow-md transition-all duration-300`}
-                >
-                  Shop Now
-                </button>
-            </div>
-
-            {/* Image 4 */}
-            <div
-              className="w-full h-[242px] relative group"
-              onMouseEnter={() => setHoveredImage(4)}
-              onMouseLeave={() => setHoveredImage(null)}
-            >
-              <Image
-                src={hoveredImage === 4 ? '/card-cover-23.jpg' : '/filter (3).png'}
-                alt="Image 4"
-                width={240}
-                height={242}
-                className="w-full h-full object-cover transition-all duration-300"
-              />
-            <button
-                  aria-label="Shop Image 3"
-                  className={`${monterrat.className} absolute bottom-5 left-5 bg-[#ffff] text-black font-bold py-2 px-6 rounded-md shadow-md transition-all duration-300`}
-                >
-                  Shop Now
-                </button>
-            </div>
-          </div>
+            Shop Now
+          </button>
         </div>
+
+        {/* Image 2 with Hover Effect */}
+        <div
+          className="w-full md:w-[240px] h-[500px] relative group"
+          onMouseEnter={() => setHoveredImage(2)}
+          onMouseLeave={() => setHoveredImage(null)}
+        >
+          <Image
+            src={getImageUrl(images[1], hoveredImage === 2)}
+            alt="Image 2"
+            width={240}
+            height={500}
+            className="w-full h-full object-cover transition-all duration-300"
+          />
+          <button
+            aria-label="Shop Image 2"
+            className={`${monterrat.className} absolute bottom-5 left-5 bg-[#ffff] text-black font-bold py-2 px-6 rounded-md shadow-md transition-all duration-300`}
+          >
+            Shop Now
+          </button>
+        </div>
+
+        {/* Other Images */}
+        <div className="flex flex-wrap justify-between gap-4 w-full md:w-[240px]">
+          {images.slice(2).map((imageSet, index) => (
+            <div
+              key={index}
+              className="w-full h-[242px] relative group"
+              onMouseEnter={() => setHoveredImage(index + 3)}
+              onMouseLeave={() => setHoveredImage(null)}
+            >
+              <Image
+                src={getImageUrl(imageSet, hoveredImage === (index + 3))}
+                alt={`Image ${index + 3}`}
+                width={240}
+                height={242}
+                className="w-full h-full object-cover transition-all duration-300"
+              />
+              <button
+                aria-label={`Shop Image ${index + 3}`}
+                className={`${monterrat.className} absolute bottom-5 left-5 bg-[#ffff] text-black font-bold py-2 px-6 rounded-md shadow-md transition-all duration-300`}
+              >
+                Shop Now
+              </button>
+            </div>
+          ))}
+        </div> </div>
       </div>
     </div>
   );

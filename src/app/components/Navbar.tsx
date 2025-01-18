@@ -144,7 +144,7 @@ const Navbar: React.FC = () => {
               <AiOutlineUser className="mr-1" />
               Login/Signup
             </Link>
-            <Link href="#" className="text-blue-500">
+            <Link href="/category" className="text-blue-500">
               <CiSearch size={20} />
             </Link>
             <Link href="/cart" className="text-blue-500">
