@@ -76,7 +76,7 @@ export default function Home() {
     const fetchData = async () => {
       try {
         const products = await getData();
-        const shuffledProducts = products.sort(() => Math.random() - 0.5).slice(0, 20);
+        const shuffledProducts = products.sort(() => Math.random() - 0.5).slice(0, 12);
         setProductItems(shuffledProducts);
       } catch (error) {
         console.error('Error fetching product items:', error);

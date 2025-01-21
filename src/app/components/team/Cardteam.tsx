@@ -74,3 +74,103 @@ export default function CardTeam() {
     </div>
   );
 }
+
+// import React from "react";
+// import Image from "next/image";
+// import Link from "next/link";
+// import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+// import { Montserrat } from "next/font/google";
+
+// // Load the Montserrat font with specific weights
+// const montserrat = Montserrat({
+//   subsets: ["latin"],
+//   weight: ["400", "500", "600"],
+// });
+
+// // Define the Team interface
+// interface Team {
+//   _id: string;
+//   name: string;
+//   profession: string;
+//   bgColor: string;
+//   description: string;
+//   imgSrc: string;
+//   facebook?: string;
+//   instagram?: string;
+//   twitter?: string;
+// }
+
+// // Define the CardTeam component
+// interface CardTeamProps {
+//   profiles: Team[];
+// }
+
+// const CardTeam = ({ profiles }: CardTeamProps) => {
+//   if (!profiles || profiles.length === 0) {
+//     return (
+//       <div className={montserrat.className}>
+//         <div className="text-center py-8 px-4 sm:px-8 md:px-12">
+//           <h1 className="text-4xl font-bold">Meet Our Team</h1>
+//           <p>No team members found.</p>
+//         </div>
+//       </div>
+//     );
+//   }
+
+//   return (
+//     <div className={montserrat.className}>
+//       <div className="text-center py-8 px-4 sm:px-8 md:px-12">
+//         <h1 className="text-4xl font-bold">Meet Our Team</h1>
+//       </div>
+
+//       {/* Grid of profiles */}
+//       <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+//         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+//           {profiles.map((profile: Team) => (
+//             <div
+//               key={profile._id}
+//               className="bg-white shadow-md rounded-lg overflow-hidden w-full sm:w-72 lg:w-80 h-full"
+//             >
+//               <div className={`h-48 ${profile.bgColor} flex items-center justify-center relative`}>
+//                 <Image
+//                   src={profile.imgSrc || "/default-profile.jpg"}
+//                   alt={`${profile.name}'s Profile`}
+//                   layout="intrinsic"
+//                   width={250}
+//                   height={250}
+//                   className="rounded-lg"
+//                 />
+//               </div>
+//               <div className="p-4 text-center">
+//                 <h2 className="text-xl font-bold">{profile.name}</h2>
+//                 <p className="text-sm text-gray-600 mb-4">{profile.profession}</p>
+//                 <p className="text-sm text-gray-500">{profile.description}</p>
+
+//                 {/* Social media icons */}
+//                 <div className="flex justify-center space-x-6 mt-4">
+//                   {profile.facebook && (
+//                     <Link href={profile.facebook} target="_blank" rel="noopener noreferrer" className="text-blue-500 text-2xl sm:text-3xl">
+//                       <FaFacebook />
+//                     </Link>
+//                   )}
+//                   {profile.instagram && (
+//                     <Link href={profile.instagram} target="_blank" rel="noopener noreferrer" className="text-pink-500 text-2xl sm:text-3xl">
+//                       <FaInstagram />
+//                     </Link>
+//                   )}
+//                   {profile.twitter && (
+//                     <Link href={profile.twitter} target="_blank" rel="noopener noreferrer" className="text-blue-400 text-2xl sm:text-3xl">
+//                       <FaTwitter />
+//                     </Link>
+//                   )}
+//                 </div>
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default CardTeam;

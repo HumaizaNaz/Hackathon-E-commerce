@@ -1,12 +1,12 @@
-import React from 'react'
-import Filter from '../components/Filter'
+import React, { Suspense } from "react";
+import Filter from "@/app/components/Filter";  // Assuming Filter is your component
 
-const page = () => {
+const CategoryPage = () => {
   return (
-    <div>
-      <Filter/>
-    </div>
-  )
-}
+    <Suspense fallback={<div>Loading...</div>}>
+      <Filter />
+    </Suspense>
+  );
+};
 
-export default page
+export default CategoryPage;
