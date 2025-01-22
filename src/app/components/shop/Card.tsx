@@ -1,53 +1,59 @@
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
-// import Image from 'next/image';
+interface ProductCard2Props {
+  product: {
+    id: string;
+    name: string;
+    description: string;
+    oldPrice: string;
+    price: string;
+    image: string;
+    images: string[];
+    colors: string[];
+    sizeAvailability: string[];
+    rating: number;
+    material: string;
+  };
+}
 
+const ShopCard2: React.FC<ProductCard2Props> = ({ product }) => {
+  return (
+    <div className="border p-4 rounded-lg shadow-md">
+      <Image
+        src={product.image}
+        alt={product.name}
+        width={400} // Specify the width
+        height={400} // Specify the height
+        className="w-full h-72 object-cover rounded-md"
+    
+      />
+       <div className="p-3 sm:p-4 flex-grow flex flex-col justify-between">
+              <div>
+                <h2 className="text-sm sm:text-lg font-bold text-gray-800 mb-1 sm:mb-2 truncate">{product.name}</h2>
+                
+              <div>
+                <div className="flex justify-between items-center mb-2 sm:mb-4">
+                  <span className="text-sm sm:text-lg font-bold text-green-600">{product.price}</span>
+                  <span className="text-xs sm:text-sm line-through text-gray-400">{product.oldPrice}</span>
+                </div>
+                <div className="flex justify-between gap-2">
+                  <Link
+                    href={`/grocery/${product.id}`}
+                    className="flex-1 bg-blue-500 text-white text-center py-1 sm:py-2 rounded-md hover:bg-blue-600 transition-colors duration-300 text-xs sm:text-sm"
+                  >
+                    Buy Now
+                  </Link>
+                  <button className="flex-1 bg-orange-500 text-white py-1 sm:py-2 rounded-md hover:bg-orange-600 transition-colors duration-300 text-xs sm:text-sm">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+              </div>
+            </div>
+    </div>
+  );
+};
 
-// interface Product {
-//   id: number;
-//   name: string;
-//   depart: string;
-//   oldPrice: string;
-//   price: string;
-//   image: string; 
-//   colors: string[];
-// }
-
-// interface ProductCardProps {
-//   product: Product;
-// }
-
-// const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-//   return (
-//     <div className="group h-[580px] w-[241px] pl-[40px] cursor-pointer mt-10 mb-10">
-//       <div className="relative aspect-w-1 aspect-h-1 w-[239px] h-[427px] overflow-hidden rounded-lg">
-//         <Image
-//           src={product.image}
-//           alt={product.name}
-//           layout="fill"
-//           objectFit="cover"
-//           className="group-hover:scale-105 transition-transform duration-200"
-//         />
-//       </div>
-//       <div className="mt-2 h-[118px] w-[239px] px-[25px] py-[36px] space-y-2">
-//         <h3 className="text-xl font-bold pl-[24px] justify-center text-black">{product.name}</h3>
-//         <h5 className="text-xl justify-start font-bold text-gray-400">{product.depart}</h5>
-//         <div className=' pl-[24px] flex justify-start gap-3'>
-//           <p className="text-lg font-bold text-gray-500">{product.oldPrice}</p>
-//           <p className="text-lg font-bold text-green-900">{product.price}</p>
-//         </div>
-
-//         <div className="flex pl-[24px] space-x-2">
-//           {product.colors.map((color, index) => (
-//             <div
-//               key={index}
-//               className="w-6 h-6 gap-3 rounded-full border"
-//               style={{ backgroundColor: color }}
-//             />
-//           ))}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ProductCard;
+export default ShopCard2;

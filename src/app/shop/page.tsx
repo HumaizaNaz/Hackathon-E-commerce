@@ -5,9 +5,10 @@ import Link from "next/link";
 import { MdWindow } from "react-icons/md";
 import { RxHamburgerMenu } from "react-icons/rx";
 
-import Product from "../components/Product";
-import Pagination from "../components/shop/Pagination";
+
+
 import Icons from "../components/Icons";
+import ProductList from "../components/shop/Product";
 const page = () => {
   return (
     <div>
@@ -60,9 +61,9 @@ const page = () => {
       </div>
       <Icons />
 
-     <Product/>
+     <ProductList/>
       
-      <Pagination />
+    
       
     </div>
   );

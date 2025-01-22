@@ -1,59 +1,63 @@
-import React from 'react';
-import Link from 'next/link';
+"use client";
 
-const Pagination = () => {
+import React from "react";
+
+interface PaginationProps {
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (pageNumber: number) => void;
+}
+
+const Pagination: React.FC<PaginationProps> = ({
+  currentPage,
+  totalPages,
+  onPageChange,
+}) => {
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+
   return (
-    <div className="flex justify-center items-center my-20">
-      <nav aria-label="Page navigation example">
-        <ul className="inline-flex -space-x-px text-base h-10">
+    <div className="flex justify-center items-center my-8">
+      <nav aria-label="Pagination Navigation">
+        <ul className="inline-flex space-x-2">
           <li>
-            <Link href="#">
-              <span className="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-blue border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">
-                Previous
-              </span>
-            </Link>
+            <button
+              disabled={currentPage === 1}
+              onClick={() => onPageChange(currentPage - 1)}
+              className={`px-4 py-2 rounded ${
+                currentPage === 1
+                  ? "bg-gray-200 cursor-not-allowed"
+                  : "bg-blue-500 text-white hover:bg-blue-600"
+              }`}
+            >
+              Previous
+            </button>
           </li>
+          {pageNumbers.map((number) => (
+            <li key={number}>
+              <button
+                onClick={() => onPageChange(number)}
+                className={`px-4 py-2 rounded ${
+                  currentPage === number
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-100 hover:bg-blue-500 hover:text-white"
+                }`}
+              >
+                {number}
+              </button>
+            </li>
+          ))}
           <li>
-            <Link href="#">
-              <span className="flex items-center justify-center px-4 h-10 leading-tight text-blue-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">
-                1
-              </span>
-            </Link>
-          </li>
-          <li>
-            <Link href="#">
-              <span className="flex items-center justify-center px-4 h-10 leading-tight text-blue-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">
-                2
-              </span>
-            </Link>
-          </li>
-          <li>
-            <Link href="#">
-              <span aria-current="page" className="flex items-center justify-center px-4 h-10 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700">
-                3
-              </span>
-            </Link>
-          </li>
-          <li>
-            <Link href="#">
-              <span className="flex items-center justify-center px-4 h-10 leading-tight text-blue-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">
-                4
-              </span>
-            </Link>
-          </li>
-          <li>
-            <Link href="#">
-              <span className="flex items-center justify-center px-4 h-10 leading-tight text-blue-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">
-                5
-              </span>
-            </Link>
-          </li>
-          <li>
-            <Link href="#">
-              <span className="flex items-center justify-center px-4 h-10 leading-tight text-blue-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700">
-                Next
-              </span>
-            </Link>
+            <button
+              disabled={currentPage === totalPages}
+              onClick={() => onPageChange(currentPage + 1)}
+              className={`px-4 py-2 rounded ${
+                currentPage === totalPages
+                  ? "bg-gray-200 cursor-not-allowed"
+                  : "bg-blue-500 text-white hover:bg-blue-600"
+              }`}
+            >
+              Next
+            </button>
           </li>
         </ul>
       </nav>
