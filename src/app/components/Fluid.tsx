@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { Montserrat } from 'next/font/google';
 import { client } from "@/sanity/lib/client";
+import Link from 'next/link';
 
 async function getData() {
   const fetchData = await client.fetch(`
@@ -61,9 +62,12 @@ export default async function Fluid() {
     {data.description}
   </p>
   <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 items-center justify-center w-full">
-  <button className="bg-[#2DC071] text-sm sm:text-base md:text-lg font-bold text-white w-[120px] h-[36px] sm:w-[150px] sm:h-[40px] md:w-[200px] md:h-[52px] rounded-[5px] flex items-center justify-center">
+  
+  <Link href="/category">
+  <button className="bg-[#2DC071] text-sm sm:text-base md:text-lg font-bold text-white w-[120px] h-[36px] sm:w-[150px] sm:h-[40px] md:w-[200px] md:h-[52px] rounded-[5px] flex items-center justify-center hover:bg-[#1F9E56] hover:scale-105">
     Buy Now
   </button>
+</Link>
   <button className="bg-white border-neutral-500 border text-sm sm:text-base md:text-lg font-bold text-[#2DC071] w-[120px] h-[36px] sm:w-[150px] sm:h-[40px] md:w-[200px] md:h-[52px] rounded-[5px] flex items-center justify-center">
     Read More
   </button>

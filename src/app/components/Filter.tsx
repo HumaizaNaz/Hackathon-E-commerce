@@ -240,7 +240,7 @@ const Filter = () => {
                   >
                     Buy Now
                   </Link>
-                  <button className="flex-1 bg-orange-500 text-white py-1 sm:py-2 rounded-md hover:bg-orange-600 transition-colors duration-300 text-xs sm:text-sm">
+                  <button className="flex-1 bg-orange-300 text-white py-1 sm:py-2 rounded-md hover:bg-orange-600 transition-colors duration-300 text-xs sm:text-sm">
                     Add to Cart
                   </button>
                 </div>

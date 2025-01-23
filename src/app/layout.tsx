@@ -5,6 +5,7 @@ import Topbar from "./components/Topbar";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/toptodown/ScrollToTop";
+import ScrollToTopButton from "@/app/components/button/Scrollbutton";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -35,6 +36,7 @@ export default function RootLayout({
         <Topbar/>
         <Navbar/>
         {children}
+        <ScrollToTopButton/>
         <Footer/>
       </body>
     </html>

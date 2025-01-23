@@ -7,8 +7,9 @@ import { comment } from './landingpage-section/comment'
 import { blog } from './landingpage-section/blog'
 import editor from './landingpage-section/editor'
 import productsList from './landingpage-section/productsList'
+import faq from './faq'
 
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [hero,vitaSection,fluid,blog,comment,editor,productsList],
+  types: [hero,vitaSection,fluid,blog,comment,editor,productsList,faq],
 }

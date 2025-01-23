@@ -3,6 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import { Montserrat } from 'next/font/google';
 import { client } from "@/sanity/lib/client";
+import Link from 'next/link';
 
 // Define the type for fetched data
 type VitaSection = {
@@ -73,11 +74,14 @@ export default async function Vita() {
     >
       ${item.price.toFixed(2)}
     </p>
-    <button className="bg-[#2DC071] text-sm sm:text-base lg:text-lg font-bold text-white px-6 sm:px-8 lg:px-10 py-2 sm:py-3 lg:py-4 rounded-lg">
-      Shop Now
-    </button>
+    <Link href="/category">
+  <button className="bg-[#2DC071] text-sm sm:text-base lg:text-lg font-bold text-white px-6 sm:px-8 lg:px-10 py-2 sm:py-3 lg:py-4 rounded-lg hover:bg-[#1F9E56]">
+    Shop Now
+  </button>
+</Link>
   </div>
-
+  
+ 
           </div>
 
           {/* Image Section */}

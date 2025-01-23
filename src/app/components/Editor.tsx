@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Montserrat } from 'next/font/google';
 import { client, urlFor } from '@/sanity/lib/client'; // Ensure this is properly configured
 import Image from 'next/image';
+import Link from 'next/link';
 
 const monterrat = Montserrat({
   subsets: ['latin'],
@@ -66,12 +67,14 @@ const Editor = () => {
             height={500}
             className="w-full h-full object-cover transition-all duration-300"
           />
+          <Link href="/category">
           <button
             aria-label="Shop Image 1"
             className={`${monterrat.className} absolute bottom-5 left-5 bg-[#ffff] text-black font-bold py-2 px-6 rounded-md shadow-md transition-all duration-300`}
           >
             Shop Now
           </button>
+          </Link>
         </div>
 
         {/* Image 2 with Hover Effect */}
@@ -87,12 +90,14 @@ const Editor = () => {
             height={500}
             className="w-full h-full object-cover transition-all duration-300"
           />
+          <Link href="/category">
           <button
             aria-label="Shop Image 2"
             className={`${monterrat.className} absolute bottom-5 left-5 bg-[#ffff] text-black font-bold py-2 px-6 rounded-md shadow-md transition-all duration-300`}
           >
             Shop Now
           </button>
+          </Link>
         </div>
 
         {/* Other Images */}
@@ -111,12 +116,14 @@ const Editor = () => {
                 height={242}
                 className="w-full h-full object-cover transition-all duration-300"
               />
+              <Link href="/category">
               <button
                 aria-label={`Shop Image ${index + 3}`}
                 className={`${monterrat.className} absolute bottom-5 left-5 bg-[#ffff] text-black font-bold py-2 px-6 rounded-md shadow-md transition-all duration-300`}
               >
                 Shop Now
               </button>
+              </Link>
             </div>
           ))}
         </div> </div>

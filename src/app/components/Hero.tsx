@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { Montserrat } from "next/font/google";
 import { client } from "@/sanity/lib/client";
+import Link from "next/link";
 
 async function getData() {
   const fetchData = await client.fetch(`
@@ -57,9 +58,11 @@ export default async function Hero() {
               >
                 {data.description}
               </p>
-              <button className="bg-[#2DC071] text-base sm:text-lg md:text-2xl font-bold text-white w-[200px] sm:w-[220px] md:w-[221px] h-[56px] sm:h-[60px] md:h-[62px] rounded-[5px] py-[12px] sm:py-[15px] md:py-[15px] px-[30px] sm:px-[40px] md:px-[40px]">
-                Shop Now
-              </button>
+              <Link href="/shop">
+  <button className="bg-[#2DC071] text-base sm:text-lg md:text-2xl font-bold text-white w-[200px] sm:w-[220px] md:w-[221px] h-[56px] sm:h-[60px] md:h-[62px] rounded-[5px] py-[12px] sm:py-[15px] md:py-[15px] px-[30px] sm:px-[40px] md:px-[40px] hover:bg-[#1F9E56]">
+    Shop Now
+  </button>
+</Link>
             </div>
           </div>
         </div>
