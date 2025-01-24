@@ -10,7 +10,8 @@ import Description from "@/app/components/productpage/Description"
 import { FaEye } from "react-icons/fa6"
 import { CiHeart } from "react-icons/ci"
 import Tabs from "@/app/components/productpage/Tabs"
-
+import { toast, } from "react-toastify";
+import { BiShareAlt } from 'react-icons/bi';
 interface Product {
   id: string
   name: string
@@ -169,7 +170,31 @@ const ProductPage = () => {
       setError("Failed to add item to cart. Please try again.")
     }
   }
-
+  const handleShare = () => {
+    // Check if 'product' is null or undefined
+    if (!product) {
+      toast.error("Product is not available.");
+      return;
+    }
+  
+    if (navigator.share) {
+      navigator.share({
+        title: product.name,
+        text: product.description, // Ensure 'product.description' exists
+        url: window.location.href,
+      })
+        .then(() => {
+          toast.success("Product shared successfully!");
+        })
+        .catch((error) => {
+          console.error("Error sharing the product: ", error);
+          toast.error("Error sharing the product.");
+        });
+    } else {
+      toast.error("Sharing is not supported on your device.");
+    }
+  };
+  
   const handleAddToWishlist = async () => {
     if (!product) return
 
@@ -260,6 +285,11 @@ const ProductPage = () => {
                 <span className="font-bold text-xl text-gray-500">10 Reviews </span>
               </div>
             )}
+             <div className="mt-6 text-4xl">
+              <button onClick={handleShare} className="text-blue-600 hover:text-blue-800">
+                <BiShareAlt className="w-8 h-8" />
+              </button>
+            </div>
             <p className="text-gray-600 my-4">{product.description}</p>
             <div className="text-base font-semibold text-gray-700 mb-2">
               Old Price: <span className="text-gray-400">${product.oldPrice}</span>

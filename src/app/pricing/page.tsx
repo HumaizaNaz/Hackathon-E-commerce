@@ -1,6 +1,6 @@
 import React from "react";
 import Heading from "../components/pricing/Heading";
-import Pricing from "../components/pricing/Pricing";
+import Pricing from "../components/pricing/Subscription";
 import Icons from "../components/Icons";
 
 import Faq from "../components/pricing/Faq";
@@ -12,7 +12,7 @@ const page = () => {
   return (
     <div className="bg-slate-50">
       <Heading />
-      <Toggle />
+      <Toggle initialPlan={""} />
       <Pricing />
 
       <Icons />
