@@ -394,32 +394,38 @@ const ProductPage = () => {
         <Icons />
         {/* Related Products Section */}
         {relatedProducts.length > 0 && (
-          <div className="mt-12">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">Related Products</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {relatedProducts.map((relatedProduct) => (
-                <div key={relatedProduct.id} className="border rounded-lg shadow-lg p-4">
-                  <Image
-                    src={relatedProduct.image || "/placeholder.svg"}
-                    alt={relatedProduct.name}
-                    width={250}
-                    height={350}
-                    className="object-cover w-full h-72 rounded-lg mb-4"
-                  />
-                  <h3 className="text-sm font-semibold text-gray-800">{relatedProduct.name}</h3>
-                  <div className="text-lg font-bold text-blue-500">${relatedProduct.price}</div>
-                  <button
-                    onClick={() => handleAddToCart(relatedProduct, false)}
-                    className="mt-4 bg-blue-500 text-white py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition-all duration-300"
-                    aria-label={`Add ${relatedProduct.name} to cart`}
-                  >
-                    Add to Cart
-                  </button>
-                </div>
-              ))}
-            </div>
+  <div className="mt-12">
+    <h2 className="text-2xl font-bold text-gray-800 mb-6">Related Products</h2>
+    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+      {relatedProducts.map((relatedProduct) => (
+        <div key={relatedProduct.id} className="border rounded-lg shadow-lg flex flex-col justify-between p-4">
+          <Image
+            src={relatedProduct.image || "/placeholder.svg"}
+            alt={relatedProduct.name}
+            width={0}
+            height={0}
+            sizes="(max-width: 640px) 100vw, 33vw"
+            className="object-cover w-full h-[150px] sm:h-[200px] md:h-[250px] lg:h-[300px] rounded-lg mb-4"
+          />
+          <div className="flex-grow">
+            <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2 text-ellipsis overflow-hidden whitespace-nowrap">
+              {relatedProduct.name}
+            </h3>
+            <div className="text-lg font-bold text-blue-500">${relatedProduct.price}</div>
           </div>
-        )}
+          <button
+            onClick={() => handleAddToCart(relatedProduct, false)}
+            className="mt-4 bg-blue-500 text-white py-1.5 px-4 sm:px-6 md:px-6 lg:px-8 w-full sm:w-auto text-sm sm:text-base rounded-lg shadow-md hover:bg-blue-600 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            aria-label={`Add ${relatedProduct.name} to cart`}
+          >
+            Add to Cart
+          </button>
+        </div>
+      ))}
+    </div>
+  </div>
+)}
+
 
         {/* Message and Progress Bar */}
         {message && (

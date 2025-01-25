@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/app/ui/card"
 import { Separator } from "@/app/ui/seperator"
 import Link from "next/link"
 import { useEffect, useState } from "react"
-
+import { FreeDeliverySection } from '@/app/components/Cart2/FreeDeliverySection'
 interface CartItem {
   productId: string
   quantity: number
@@ -92,7 +92,6 @@ export default function CartPage() {
       if (!response.ok) {
         throw new Error("Failed to add item to wishlist")
       }
-      // Optionally, you can show a success message here
     } catch (error) {
       console.error("Error adding item to wishlist:", error)
     }
@@ -101,27 +100,17 @@ export default function CartPage() {
   const subtotal = cartItems.reduce((total, item) => total + Number(item.price) * item.quantity, 0)
 
   return (
-    <div className="container mx-auto px-4 py-8 mt-[99px]">
+    <div className="container mx-auto px-4 py-8 mt-[10px] mb-[20px]">
       {/* Free Delivery Banner */}
-      <div className="mb-8 bg-gray-50 p-4 rounded-lg">
-        <div className="flex items-center gap-2">
-          <p className="text-sm font-medium">Free Delivery</p>
-          <p className="text-sm text-gray-600">Applies to orders of ₹ 14,000.00 or more.</p>
-          <Link href={"/shipment"}>
-            <Button variant="link" className="text-sm">
-              View details
-            </Button>
-          </Link>
-        </div>
-      </div>
+     <FreeDeliverySection/>
 
-      <div className="grid lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2">
+      <div className="grid lg:grid-cols-3 gap-8 mt-[90px]">
+        <div className="lg:col-span-2 ">
           {/* Cart Items */}
           <h1 className="text-2xl font-medium mb-6">My Cart</h1>
           <div className="space-y-6">
             {cartItems.map((item: CartItem) => (
-              <Card key={item.productId}>
+              <Card key={item.productId} className="shadow-lg hover:shadow-xl transition-shadow duration-200">
                 <CardContent className="p-6">
                   <div className="flex gap-6">
                     <div className="w-24 h-24 bg-gray-100 rounded-md">
@@ -130,7 +119,7 @@ export default function CartPage() {
                         width={200}
                         height={200}
                         alt={item.name}
-                        className="w-24 h-24 object-cover rounded-md mb-4 md:mb-0"
+                        className="w-24 h-24 object-cover rounded-md"
                       />
                     </div>
                     <div className="flex-1">
@@ -154,10 +143,10 @@ export default function CartPage() {
                         <p className="text-sm">MRP: ₹ {(Number(item.price) * item.quantity).toFixed(2)}</p>
                       </div>
                       <div className="flex gap-4 mt-4">
-                        <Button variant="ghost" size="sm" onClick={() => handleWishList(item)}>
+                        <Button variant="ghost" size="sm" onClick={() => handleWishList(item)} className="hover:text-red-500 transition-colors">
                           <Heart className="w-4 h-4" />
                         </Button>
-                        <Button variant="ghost" size="sm" onClick={() => handleRemoveItem(item.productId)}>
+                        <Button variant="ghost" size="sm" onClick={() => handleRemoveItem(item.productId)} className="hover:text-red-500 transition-colors">
                           <Trash2 className="w-4 h-4" />
                         </Button>
                       </div>
@@ -171,7 +160,7 @@ export default function CartPage() {
 
         {/* Summary */}
         <div>
-          <Card className="sticky top-8">
+          <Card className="sticky top-8 shadow-lg">
             <CardContent className="p-6">
               <h2 className="text-xl font-medium mb-4">Summary</h2>
               <div className="space-y-4">
@@ -189,7 +178,7 @@ export default function CartPage() {
                   <span>₹ {subtotal.toFixed(2)}</span>
                 </div>
                 <Link href={"/checkout"}>
-                  <Button className="w-full">Checkout</Button>
+                  <Button className="w-full bg-blue-500 hover:bg-blue-600 transition-colors">Checkout</Button>
                 </Link>
               </div>
             </CardContent>
@@ -199,4 +188,3 @@ export default function CartPage() {
     </div>
   )
 }
-

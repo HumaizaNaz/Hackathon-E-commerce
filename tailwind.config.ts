@@ -12,6 +12,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        'dark-navy': '#001f3d',
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
