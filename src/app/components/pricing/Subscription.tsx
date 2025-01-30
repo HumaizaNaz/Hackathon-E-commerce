@@ -158,7 +158,7 @@ const SubscriptionManagement = () => {
   }, [])
 
   const handleCardClick = (subscriptionId: string) => {
-    router.push(`/subscription/${subscriptionId}`)
+    router.push(`/subcription/${subscriptionId}`)
   }
 
   return (
@@ -186,7 +186,7 @@ const SubscriptionManagement = () => {
                 <div className="flex items-center justify-between gap-x-4">
                   <h2
                     id={`subscription-${subscription._id}`}
-                    className={`text-lg font-semibold text-center leading-8 ${
+                    className={`text-xl font-semibold text-center leading-8 ${
                       isCenterCard ? "text-white" : subscription.isPopular ? "text-white" : "text-gray-800"
                     }`}
                   >
@@ -209,7 +209,7 @@ const SubscriptionManagement = () => {
                   </span>
                 </p>
                 <a
-                  href={`/subscription/${subscription._id}`}
+                  href={`/subcription/${subscription._id}`}
                   aria-describedby={`subscription-${subscription._id}`}
                   className="bg-indigo-600 text-white hover:bg-indigo-500 focus-visible:outline-indigo-600 mt-6 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6"
                 >

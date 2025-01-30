@@ -7,11 +7,12 @@ import { client } from "@/sanity/lib/client"
 import Icons from "../../components/Icons"
 import Product from "../../components/productpage/Product"
 import Description from "@/app/components/productpage/Description"
-import { FaEye } from "react-icons/fa6"
+import { FaEye, FaStar, FaRegStar } from "react-icons/fa"
 import { CiHeart } from "react-icons/ci"
-import Tabs from "@/app/components/productpage/Tabs"
+
 import { toast, } from "react-toastify";
-import { BiShareAlt } from 'react-icons/bi';
+import { BiShareAlt } from 'react-icons/bi'; // Share Icon
+import { Review } from "@/app/types/reviews"
 interface Product {
   id: string
   name: string
@@ -26,6 +27,7 @@ interface Product {
   material?: string
   category?: string
   availability?: string
+  reviews?: Review[]
 }
 
 async function getData(): Promise<Product[]> {
@@ -44,7 +46,8 @@ async function getData(): Promise<Product[]> {
         colors,
         sizeAvailability,
         rating,
-        material
+        material,
+        reviews
       }
     `)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -62,6 +65,7 @@ async function getData(): Promise<Product[]> {
       material: prod.material || "",
       category: prod.category || "",
       availability: prod.availability || "Out of Stock",
+      reviews: Array.isArray(prod.reviews) ? prod.reviews : [],
     }))
   } catch (err) {
     console.error("Error fetching data:", err)
@@ -85,7 +89,13 @@ const ProductPage = () => {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>("")
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([])
-
+  const [review, setReview] = useState<Review>({
+    name: "",
+    rating: 0,
+    comment: "",
+    date: "",
+  });
+  
   useEffect(() => {
     const fetchData = async () => {
       const products = await getData()
@@ -110,6 +120,58 @@ const ProductPage = () => {
       setRelatedProducts(sortedRelatedProducts)
     }
   }, [product, productItems])
+  const handleReviewChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setReview((prev) => ({ ...prev, [name]: value }))
+  }
+
+  // Handle rating selection
+  const handleRatingChange = (rating: number) => {
+    setReview((prev) => ({ ...prev, rating }))
+  }
+
+  // Submit review to the API route
+  const handleSubmitReview = async () => {
+    if (!product || !review.name || !review.comment || review.rating === 0) {
+      toast.error("Please fill out all fields and provide a rating.")
+      return
+    }
+
+    try {
+      const response = await fetch("/api/review", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          productId: product.id,
+          review: {
+            ...review,
+            date: new Date().toISOString(),
+          },
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error("Failed to submit review.")
+      }
+
+      const { updatedProduct } = await response.json()
+      setProduct((prevProduct) => {
+        if (!prevProduct) return updatedProduct
+        return {
+          ...prevProduct,
+          reviews: updatedProduct.reviews,
+        }
+      })
+
+      toast.success("Review submitted successfully!")
+      setReview({ name: "", rating: 0, comment: "", date: "" })
+    } catch (error) {
+      console.error("Error submitting review:", error)
+      toast.error("Failed to submit review.")
+    }
+  }
 
   const handleAddToCart = async (item: Product, isBuyNow: boolean) => {
     if (item.sizeAvailability?.length && !selectedSize) {
@@ -241,7 +303,9 @@ const ProductPage = () => {
   }
 
   if (!product) return <div>Loading...</div>
-
+  const averageRating =
+  (product.reviews?.reduce((sum, review) => sum + review.rating, 0) || 0) /
+  (product.reviews?.length || 1); // Avoid division by zero
   return (
     <div className="bg-gray-100 py-8">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -270,22 +334,23 @@ const ProductPage = () => {
           </div>
           <div className="md:flex-1 px-4">
             <h1 className="text-3xl font-bold text-gray-800">{product.name}</h1>
-            {product.rating !== undefined && (
-              <div className="mb-2">
-                {Array.from({ length: product.rating }, (_, i) => (
-                  <span key={i} className="text-yellow-500 text-3xl">
-                    ★
-                  </span>
-                ))}
-                {Array.from({ length: 5 - product.rating }, (_, i) => (
-                  <span key={i} className="text-gray-300">
-                    ★
-                  </span>
-                ))}
-                <span className="font-bold text-xl text-gray-500">10 Reviews </span>
-              </div>
-            )}
-             <div className="mt-6 text-4xl">
+           
+            <div className="flex justify-center sm:justify-start items-center mt-4">
+            <div className="flex text-[#F3CD03] gap-2">
+              {[...Array(5)].map((_, index) =>
+                index < averageRating ? (
+                  <FaStar key={index} size={24} />
+                ) : (
+                  <FaRegStar key={index} size={24} />
+                )
+              )}
+            </div>
+            <span className="ml-2 text-[#737373] font-bold text-[14px]">
+              {product.reviews?.length || 0} Reviews
+            </span>
+          </div>
+
+            <div className="mt-6 text-4xl">
               <button onClick={handleShare} className="text-blue-600 hover:text-blue-800">
                 <BiShareAlt className="w-8 h-8" />
               </button>
@@ -389,43 +454,100 @@ const ProductPage = () => {
             </button>
           </div>
         </div>
-        <Tabs />
+         {/* Review Form */}
+      <div className="mt-12">
+        <h3 className="text-2xl font-bold text-[#252B42] mb-4">Leave a Review</h3>
+        <div className="flex flex-col gap-4">
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            value={review.name}
+            onChange={handleReviewChange}
+            className="p-2 border border-[#E8E8E8] rounded-lg"
+          />
+          <textarea
+            name="comment"
+            placeholder="Your Review"
+            value={review.comment}
+            onChange={handleReviewChange}
+            className="p-2 border border-[#E8E8E8] rounded-lg"
+            rows={4}
+          />
+          <div className="flex gap-2">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <button
+                key={star}
+                onClick={() => handleRatingChange(star)}
+                className={`text-2xl ${star <= review.rating ? "text-[#F3CD03]" : "text-[#BDBDBD]"}`}
+              >
+                ★
+              </button>
+            ))}
+          </div>
+          <button
+            onClick={handleSubmitReview}
+            className="px-6 py-2 bg-[#23A6F0] text-white rounded-lg hover:bg-[#1E90FF] transition-all"
+          >
+            Submit Review
+          </button>
+        </div>
+      </div>
+
+      {/* Display Reviews */}
+      <div className="mt-12">
+        <h3 className="text-2xl font-bold text-[#252B42] mb-4">Customer Reviews</h3>
+        {product.reviews?.length ?? 0 > 0 ? (
+          product.reviews?.map((review, index) => (
+            <div key={index} className="mb-6">
+              <div className="flex items-center gap-2">
+                <span className="font-bold text-[#252B42]">{review.name}</span>
+                <div className="flex text-[#F3CD03]">
+                  {[...Array(5)].map((_, i) =>
+                    i < review.rating ? <FaStar key={i} size={16} /> : <FaRegStar key={i} size={16} />,
+                  )}
+                </div>
+                <span className="text-[#737373] text-sm">{new Date(review.date).toLocaleDateString()}</span>
+              </div>
+              <p className="text-[#858585] mt-2">{review.comment}</p>
+            </div>
+          ))
+        ) : (
+          <p className="text-[#737373]">No reviews yet. Be the first to review!</p>
+        )}
+      </div>
+    </div>
+      
         <Description />
         <Icons />
         {/* Related Products Section */}
         {relatedProducts.length > 0 && (
-  <div className="mt-12">
-    <h2 className="text-2xl font-bold text-gray-800 mb-6">Related Products</h2>
-    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-      {relatedProducts.map((relatedProduct) => (
-        <div key={relatedProduct.id} className="border rounded-lg shadow-lg flex flex-col justify-between p-4">
-          <Image
-            src={relatedProduct.image || "/placeholder.svg"}
-            alt={relatedProduct.name}
-            width={0}
-            height={0}
-            sizes="(max-width: 640px) 100vw, 33vw"
-            className="object-cover w-full h-[150px] sm:h-[200px] md:h-[250px] lg:h-[300px] rounded-lg mb-4"
-          />
-          <div className="flex-grow">
-            <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2 text-ellipsis overflow-hidden whitespace-nowrap">
-              {relatedProduct.name}
-            </h3>
-            <div className="text-lg font-bold text-blue-500">${relatedProduct.price}</div>
+          <div className="mt-12">
+            <h2 className="text-2xl font-bold text-gray-800 mb-6">Related Products</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {relatedProducts.map((relatedProduct) => (
+                <div key={relatedProduct.id} className="border rounded-lg shadow-lg p-4">
+                  <Image
+                    src={relatedProduct.image || "/placeholder.svg"}
+                    alt={relatedProduct.name}
+                    width={250}
+                    height={350}
+                    className="object-cover w-full h-72 rounded-lg mb-4"
+                  />
+                  <h3 className="text-sm font-semibold text-gray-800">{relatedProduct.name}</h3>
+                  <div className="text-lg font-bold text-blue-500">${relatedProduct.price}</div>
+                  <button
+                    onClick={() => handleAddToCart(relatedProduct, false)}
+                    className="mt-4 bg-blue-500 text-white py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition-all duration-300"
+                    aria-label={`Add ${relatedProduct.name} to cart`}
+                  >
+                    Add to Cart
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
-          <button
-            onClick={() => handleAddToCart(relatedProduct, false)}
-            className="mt-4 bg-blue-500 text-white py-1.5 px-4 sm:px-6 md:px-6 lg:px-8 w-full sm:w-auto text-sm sm:text-base rounded-lg shadow-md hover:bg-blue-600 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
-            aria-label={`Add ${relatedProduct.name} to cart`}
-          >
-            Add to Cart
-          </button>
-        </div>
-      ))}
-    </div>
-  </div>
-)}
-
+        )}
 
         {/* Message and Progress Bar */}
         {message && (
@@ -445,9 +567,13 @@ const ProductPage = () => {
           </div>
         )}
       </div>
-    </div>
+     
+    
+   
   )
 }
 
 export default ProductPage
+
+
 
