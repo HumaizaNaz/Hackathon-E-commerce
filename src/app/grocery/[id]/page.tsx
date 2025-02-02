@@ -131,47 +131,50 @@ const ProductPage = () => {
   }
 
   // Submit review to the API route
-  const handleSubmitReview = async () => {
-    if (!product || !review.name || !review.comment || review.rating === 0) {
-      toast.error("Please fill out all fields and provide a rating.")
-      return
-    }
-
-    try {
-      const response = await fetch("/api/review", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          productId: product.id,
-          review: {
-            ...review,
-            date: new Date().toISOString(),
-          },
-        }),
-      })
-
-      if (!response.ok) {
-        throw new Error("Failed to submit review.")
+    // Submit review to the API route
+    const handleSubmitReview = async () => {
+      if (!product || !review.name || !review.comment || review.rating === 0) {
+        toast.error("Please fill out all fields and provide a rating.")
+        return
       }
-
-      const { updatedProduct } = await response.json()
-      setProduct((prevProduct) => {
-        if (!prevProduct) return updatedProduct
-        return {
-          ...prevProduct,
-          reviews: updatedProduct.reviews,
+  
+      try {
+        const response = await fetch("/api/review", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            productId: product.id,
+            review: {
+              ...review,
+              date: new Date().toISOString(),
+            },
+          }),
+        })
+  
+        const data = await response.json()
+  
+        if (!response.ok) {
+          throw new Error(data.message || "Failed to submit review.")
         }
-      })
-
-      toast.success("Review submitted successfully!")
-      setReview({ name: "", rating: 0, comment: "", date: "" })
-    } catch (error) {
-      console.error("Error submitting review:", error)
-      toast.error("Failed to submit review.")
+  
+        setProduct((prevProduct) => {
+          if (!prevProduct) return data.updatedProduct
+          return {
+            ...prevProduct,
+            reviews: data.updatedProduct.reviews,
+          }
+        })
+  
+        toast.success("Review submitted successfully!")
+        setReview({ name: "", rating: 0, comment: "", date: "" })
+      } catch (error) {
+        console.error("Error submitting review:", error)
+        toast.error(error instanceof Error ? error.message : "Failed to submit review.")
+      }
     }
-  }
+  
 
   const handleAddToCart = async (item: Product, isBuyNow: boolean) => {
     if (item.sizeAvailability?.length && !selectedSize) {
