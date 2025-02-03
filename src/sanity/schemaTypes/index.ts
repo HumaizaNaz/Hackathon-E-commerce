@@ -10,8 +10,9 @@ import productsList from './landingpage-section/productsList'
 import faq from './faq'
 import subOrder from './cards/subOrder'
 import { subscription } from './cards/subscription'
+import feedBack from './cards/feedBack'
 
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [hero,vitaSection,fluid,blog,comment,editor,productsList,faq,subOrder,subscription],
+  types: [hero,vitaSection,fluid,blog,comment,editor,feedBack,productsList,faq,subOrder,subscription],
 }
