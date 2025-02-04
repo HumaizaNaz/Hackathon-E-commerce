@@ -46,7 +46,9 @@ export default function CardTeam() {
                 <Image
                   src={profile.imgSrc}
                   alt="Profile"
-                  layout="fill"
+                  
+                  width={316}
+              height={231}
                   objectFit="cover"
                   className="rounded-lg"
                 />
@@ -74,7 +76,6 @@ export default function CardTeam() {
     </div>
   );
 }
-
 // import React from "react";
 // import Image from "next/image";
 // import Link from "next/link";
