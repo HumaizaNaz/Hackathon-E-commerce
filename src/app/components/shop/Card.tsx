@@ -9,12 +9,16 @@ interface ProductCard2Props {
     description: string;
     oldPrice: string;
     price: string;
+    tags: string[];
     image: string;
     images: string[];
-    colors: string[];
-    sizeAvailability: string[];
-    rating: number;
-    material: string;
+    colors?: string[];
+    sizeAvailability?: string[];
+    rating?: number;
+    material?: string;
+    category?: string;
+    subCategory?: string;
+    availability?: string;
   };
 }
 

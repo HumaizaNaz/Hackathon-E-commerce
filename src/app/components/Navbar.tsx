@@ -6,14 +6,16 @@ import { Montserrat } from "next/font/google";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-
+import Topbar from "./Topbar";
+import { UserButton } from "@clerk/nextjs";
+import { useUser} from "@clerk/nextjs";
 import { CiSearch, CiHeart } from "react-icons/ci";
 import { BsCart2 } from "react-icons/bs";
 import { FiMenu, FiX } from "react-icons/fi";
 import { IoIosArrowDown } from "react-icons/io";
 import { CompulsoryData } from "../data/main/compulsory";
 import SearchBar from "./SearchBar";
-import Language from "./Language";
+// import Language from "./Language";
 import { AiOutlineUser } from "react-icons/ai"
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -29,7 +31,7 @@ const Navbar: React.FC = () => {
   const [cartCount, setCartCount] = useState(0)
   // const { isSignedIn } = useUser();
   const router = useRouter();
-
+  const { isSignedIn } = useUser(); 
   const dropdownRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
@@ -110,6 +112,7 @@ useEffect(() => {
 
   return (
     <>
+     <Topbar/>
       <header
         className={`sticky top-0 w-full bg-white z-50 shadow-md ${montserrat.className}`}
       >
@@ -171,17 +174,23 @@ useEffect(() => {
                 <Link href="/contact">Contact</Link>
               </li>
               <li>
-                <Language />
+                {/* <Language /> */}
               </li>
             </ul>
           </nav>
 
           {/* Icons (Desktop View) */}
           <div className="hidden lg:flex items-center gap-4">
-          <Link href="/login" className="flex items-center text-blue-500">
-<AiOutlineUser className="mr-1" />
-Login/Signup
-</Link>
+              {/* Show Login/Signup if user is NOT signed in */}
+      {!isSignedIn ? (
+        <Link href="/login" className="flex items-center text-blue-500">
+          <AiOutlineUser className="mr-1" />
+          Login/Signup
+        </Link>
+      ) : (
+        // Show UserButton if user is signed in
+        <UserButton />
+      )}
             <button onClick={toggleSearch} className="text-blue-500">
               <CiSearch size={20} />
             </button>
@@ -270,15 +279,21 @@ Login/Signup
                 </button>
               </li>
               <li>
-                <Language />
+                {/* <Language /> */}
               </li>
             </ul>
             <div className="flex justify-center gap-4 mt-4">
              
-  <Link href="/login" className="flex items-center text-blue-500">
-  <AiOutlineUser className="mr-1" />
-  Login/Signup
-</Link>
+      {/* Show Login/Signup if user is NOT signed in */}
+      {!isSignedIn ? (
+        <Link href="/login" className="flex items-center text-blue-500">
+          <AiOutlineUser className="mr-1" />
+          Login/Signup
+        </Link>
+      ) : (
+        // Show UserButton if user is signed in
+        <UserButton />
+      )}
               <button onClick={toggleSearch} className="text-blue-500">
                 <CiSearch size={20} />
               </button>
