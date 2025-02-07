@@ -30,12 +30,12 @@ const Card = () => {
                   onClick={() => (window.location.href = "tel:03120119537")}
                 />
               </div>
-              <p className="mt-6 text-xl font-bold leading-6 text-black text-center">03120119537</p>
+              <p className="mt-6 text-xl font-bold leading-6 text-black text-center">0312011123</p>
               <p className="mt-2 text-sm font-medium leading-6 text-gray-600 text-center">(012) 3899076</p>
               <p className="mt-4 text-lg font-bold leading-6 text-blue-600 text-center">Call us</p>
             </div>
             <button
-              onClick={() => (window.location.href = "tel:03120119537")}
+              onClick={() => (window.location.href = "tel:0312011123")}
               className="mt-6 w-full py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-300 text-lg font-semibold"
             >
               Call Now
@@ -57,7 +57,7 @@ const Card = () => {
                 />
               </div>
               <p className="mt-6 text-xl font-bold leading-6 text-white text-center">
-                House number L123 sector 5A1 north karachi
+                House number L123 north karachi
               </p>
               <p className="mt-2 text-sm font-medium leading-6 text-gray-300 text-center">Near Makkah hotel</p>
               <p className="mt-4 text-lg font-bold leading-6 text-blue-400 text-center">Meet us</p>
@@ -85,7 +85,7 @@ const Card = () => {
                 />
               </div>
               <p className="mt-6 text-xl font-bold leading-6 text-black text-center">georgia.young@example.com</p>
-              <p className="mt-2 text-sm font-medium leading-6 text-gray-600 text-center">georgia.young@example.com</p>
+              <p className="mt-2 text-sm font-medium leading-6 text-gray-600 text-center">georgia.abc@gmail.com</p>
               <p className="mt-4 text-lg font-bold leading-6 text-blue-600 text-center">Get support</p>
             </div>
             <button

@@ -7,6 +7,7 @@ import Image from "next/image";
 import { FaSearch } from "react-icons/fa";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+import WishlistIcon from "@/app/components/WishlistIcons";
 
 interface SanityProduct {
   _id: string;
@@ -215,12 +216,19 @@ const Filter = () => {
             className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 flex flex-col"
           >
             <div className="relative pt-[100%]">
+             
               <Image
                 src={prod.image || "/placeholder.svg"}
                 alt={prod.name}
                 layout="fill"
                 objectFit="cover"
                 className="absolute top-0 left-0 w-full h-full"
+              />
+                 <WishlistIcon 
+                productId={prod.id} 
+                productName={prod.name} 
+                productPrice={prod.price} 
+                productImage={prod.image} 
               />
             </div>
             <div className="p-3 sm:p-4 flex-grow flex flex-col justify-between">
