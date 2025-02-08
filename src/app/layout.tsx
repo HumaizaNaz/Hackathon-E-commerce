@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import localFont from "next/font/local";
 import "./globals.css";
@@ -6,16 +6,10 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { StartTop } from "@/app/components/starttotop/StartTop";
-import Loading from "@/app/Loading"
+import Loading from "@/app/Loading";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import {
-  ClerkProvider,
-  // SignInButton,
-  // SignedIn,
-  // SignedOut,
-  // UserButton
-} from '@clerk/nextjs'
+import { ClerkProvider } from '@clerk/nextjs';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,22 +23,28 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
-}) {const pathname = usePathname();
+}) {
+  const pathname = usePathname();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setIsLoading(true);
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
+    const hasVisited = localStorage.getItem("hasVisited");
 
-    return () => clearTimeout(timer);
-  }, [pathname]); // Trigger effect on route change
+    if (!hasVisited) {
+      setIsLoading(true);
+      localStorage.setItem("hasVisited", "true"); // Set flag in localStorage
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 3000);
+    } else {
+      setIsLoading(false);
+    }
+  }, []);
+
   const isStudio = pathname.startsWith("/studio");
   const isHome = pathname.startsWith("/sign-in");
   const isAdmin = pathname.startsWith("/admin");
@@ -52,24 +52,19 @@ export default function RootLayout({
   const isCustomers = pathname.startsWith("/customers");
   const isStatistics = pathname.startsWith("/product-data");
   const isReviews = pathname.startsWith("/reviews");
-  const studioAndHome = !isStudio && !isHome && !isAdmin && !isOrders && !isCustomers && !isStatistics && !isReviews
+
+  const studioAndHome = !isStudio && !isHome && !isAdmin && !isOrders && !isCustomers && !isStatistics && !isReviews;
+
   return (
     <ClerkProvider>
       <html lang="en">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
           <StartTop />
-         
-          {(studioAndHome && !isLoading) &&  <Navbar />}
-         
+          {(studioAndHome && !isLoading) && <Navbar />}
           {isLoading ? <Loading /> : children}
           {(studioAndHome && !isLoading) && <Footer />}
-          {/* <Navbar/>
-          {children}
-          <Footer/> */}
         </body>
       </html>
-      </ClerkProvider>
+    </ClerkProvider>
   );
 }

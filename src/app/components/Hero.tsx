@@ -97,7 +97,7 @@ export default async function Hero() {
   const data = await getData();
 
   return (
-    <div className="w-full  lg:h-[716px] h-full bg-red-500 flex items-center">
+    <div className="w-full  lg:h-[716px] h-full bg-gray-50 flex items-center">
       <section className="w-full h-full bg-cover bg-center relative">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
